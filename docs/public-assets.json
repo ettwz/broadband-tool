@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "assets": {
+    "docs/delivery/screenshots/android14-channels-full.png": {
+      "sha256": "93993259084b430edcad485cf86f65ee89514908a680b5fcfcea777dd45785e1",
+      "kind": "synthetic_ui",
+      "review": "Illustrative/generated test data only; no deployed network identifiers."
+    },
+    "docs/delivery/screenshots/android14-channels-zoomed.png": {
+      "sha256": "5aef5bbb5333b57e537bb438e9aebc5129ce7e29dcb236481c650eb59576b402",
+      "kind": "synthetic_ui",
+      "review": "Illustrative/generated test data only; no deployed network identifiers."
+    },
+    "docs/delivery/screenshots/android14-horizontal-channels-full.png": {
+      "sha256": "4cb9b6d21d2c33f56b5c586f2cd8704ca0c7ff6974b7c5db421d6c43ff00aa3f",
+      "kind": "synthetic_ui",
+      "review": "Illustrative/generated test data only; no deployed network identifiers."
+    },
+    "docs/delivery/screenshots/android14-horizontal-channels-zoomed.png": {
+      "sha256": "eb1ca7f79dc875969b01eaa619577b160220718de878785685a8507d0acb7650",
+      "kind": "synthetic_ui",
+      "review": "Illustrative/generated test data only; no deployed network identifiers."
+    },
+    "docs/delivery/screenshots/channels-zoom-detail.png": {
+      "sha256": "26c15ded470c2197c903c8e7070b1364bb98dbe71bcfe0c6f2a4bdb2fc3e5278",
+      "kind": "synthetic_ui",
+      "review": "Illustrative/generated test data only; no deployed network identifiers."
+    },
+    "docs/delivery/screenshots/channels-zoom-full.png": {
+      "sha256": "b61747436ddf1836ab3d3643d16e210f0868bd5a5b6aad54d0f52c37129a6731",
+      "kind": "synthetic_ui",
+      "review": "Illustrative/generated test data only; no deployed network identifiers."
+    },
+    "docs/design/gui-access-v2.png": {
+      "sha256": "4d4ef03c2fec6ae37fb759b80c4c8686f89e2abe27b17d07cf3fb0783c662f98",
+      "kind": "concept_mockup",
+      "review": "Illustrative/generated test data only; no deployed network identifiers."
+    },
+    "docs/design/gui-config-v2.png": {
+      "sha256": "43f813bc57001290b427ce4b40722072a5bfb779c89207400adfb78ebbb143d7",
+      "kind": "concept_mockup",
+      "review": "Illustrative/generated test data only; no deployed network identifiers."
+    },
+    "docs/design/gui-core-v1.png": {
+      "sha256": "f5c870e7df3e89ea733509aeb9be3af9a264cac91822d2f531c3867e31736f68",
+      "kind": "concept_mockup",
+      "review": "Illustrative/generated test data only; no deployed network identifiers."
+    },
+    "docs/design/gui-details-v1.png": {
+      "sha256": "bcf6009ba60d4bd82c6e5970e96ceb7d5cdd5224760eace474810ac6cd06b547",
+      "kind": "concept_mockup",
+      "review": "Illustrative/generated test data only; no deployed network identifiers."
+    },
+    "docs/design/gui-features-v1.png": {
+      "sha256": "0c5af3aaaf25780ca50c8d92f083fcf5e5005836d08508ec4017abd2447bd227",
+      "kind": "concept_mockup",
+      "review": "Illustrative/generated test data only; no deployed network identifiers."
+    },
+    "docs/design/gui-link-v2.png": {
+      "sha256": "9fca86771be85f56dd5f2bd60a914ec4a661204791cb30a9f0eadb0935ec1452",
+      "kind": "concept_mockup",
+      "review": "Illustrative/generated test data only; no deployed network identifiers."
+    },
+    "docs/design/gui-recovery-v2.png": {
+      "sha256": "003050fa2cd931efb0a0be569ccfdc5797fc149a7f90087a3d3571023ea84180",
+      "kind": "concept_mockup",
+      "review": "Illustrative/generated test data only; no deployed network identifiers."
+    },
+    "apps/mobile/android/app/src/main/res/mipmap-hdpi/ic_launcher.png": {
+      "sha256": "6a7c8f0d703e3682108f9662f813302236240d3f8f638bb391e32bfb96055fef",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/android/app/src/main/res/mipmap-mdpi/ic_launcher.png": {
+      "sha256": "c7c0c0189145e4e32a401c61c9bdc615754b0264e7afae24e834bb81049eaf81",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png": {
+      "sha256": "e14aa40904929bf313fded22cf7e7ffcbf1d1aac4263b5ef1be8bfce650397aa",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png": {
+      "sha256": "4d470bf22d5c17d84edc5f82516d1ba8a1c09559cd761cefb792f86d9f52b540",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png": {
+      "sha256": "3c34e1f298d0c9ea3455d46db6b7759c8211a49e9ec6e44b635fc5c87dfb4180",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png": {
+      "sha256": "7770183009e914112de7d8ef1d235a6a30c5834424858e0d2f8253f6b8d31926",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png": {
+      "sha256": "cab10a0d391ec5bc09ef50ce49e8ad401cee7ef03707ec0923a222c5c2b3d212",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png": {
+      "sha256": "b9ad02cf6576a04d1b6806ac02a2431481b448dd0c2e505ce25842d1f7c4730b",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png": {
+      "sha256": "c6e6d3b215ae744a9c391f4c4d44157eff5e739d6ad6c39f9bfa5df66dddd267",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png": {
+      "sha256": "5dee24dc104ac76dc162e42ae0beb163d426bf365562ee28ba7b3ad368559a60",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png": {
+      "sha256": "a9b21eb6f4271385655a8771f76e29eef8c1107d7879cbcfc567e6619d1f716a",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png": {
+      "sha256": "e677d701ffe4af7bc2935098d6b3984cc9ab7ace573e6900955a5535b12410cf",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png": {
+      "sha256": "b9ad02cf6576a04d1b6806ac02a2431481b448dd0c2e505ce25842d1f7c4730b",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png": {
+      "sha256": "7c61c42fc7b657d9cf314d32a4ec458f0647c3aaf360be1b9377857266ec2499",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png": {
+      "sha256": "19be171481dc71a0b2803ebcd01dd8b0c5fd5778dee34c0a3cabc948c225f24e",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png": {
+      "sha256": "19be171481dc71a0b2803ebcd01dd8b0c5fd5778dee34c0a3cabc948c225f24e",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png": {
+      "sha256": "4209a49e44a92ec40a327d3455eb1b1c153ee83d75de1c2be0a12ab18b2ff9de",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png": {
+      "sha256": "836c918cb613249eba0483a6b02fa3df3c1c0a89a315ee4d3b88509b83c7ab73",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png": {
+      "sha256": "41c7d42f6e61f8fe7f30b1ffa2256aecbc9682be06d18c4a3062043e1a2e547c",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png": {
+      "sha256": "5d7e5bdf01b93802bc973345b3a78c038907147625035952a08a115a563b7f81",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png": {
+      "sha256": "93ae7d494fad0fb30cbf3ae746a39c4bc7a0f8bbf87fbb587a3f3c01f3c5ce20",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png": {
+      "sha256": "93ae7d494fad0fb30cbf3ae746a39c4bc7a0f8bbf87fbb587a3f3c01f3c5ce20",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    },
+    "apps/mobile/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png": {
+      "sha256": "93ae7d494fad0fb30cbf3ae746a39c4bc7a0f8bbf87fbb587a3f3c01f3c5ce20",
+      "kind": "application_icon",
+      "review": "Application/template icon, no device or network data."
+    }
+  }
+}

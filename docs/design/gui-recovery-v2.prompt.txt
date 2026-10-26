@@ -1,0 +1,41 @@
+Use case: ui-mockup. Make the final matching v2 mobile app GUI board using the reference's exact layout and style: three full mobile screens across a pale cool-gray landscape canvas, white cards, crisp Chinese typography, restrained blue controls, subtle green/amber status, rounded flat screen panels. No 3D device frames, no perspective, no giant shield graphics. This board explains safe temporary-network recovery clearly.
+Top heading "家庭网络工具 · 配置恢复"; subtitle "正常与异常状态 · 界面示例". Captions "10 临时使用中", "11 恢复完成", "12 权限断开". Status time 09:41. Bottom nav "概览", "Wi-Fi", "测速", "工具" with 工具 blue selected.
+
+LEFT SCREEN:
+Back, title "临时配置".
+Ethernet card "USB 有线网卡", green "Root 可用", current address "192.168.50.2".
+Main white card blue tiny label "临时使用中", large tabular "04:32", small suffix "剩余时间". Neutral description "到期后恢复原配置".
+Group "当前配置" rows "地址模式" / "静态 IPv4"; "IPv4" / "192.168.50.2 / 24"; "网关" / "未设置"; "MTU" / "1500".
+Another compact card "恢复目标" / "原 DHCP 配置".
+Wide blue button "结束并恢复".
+Secondary outlined button "检查当前连接".
+Small info line "退出前请完成恢复". Never show an infinite or permanent keep option.
+
+MIDDLE SCREEN:
+Back, title "恢复结果".
+Ethernet card "USB 有线网卡", green "已连接".
+Small tasteful green check in white result card, heading "已恢复 DHCP", secondary "当前配置已核对".
+Rows "地址模式" / "DHCP"; "当前 IPv4" / "192.168.20.36"; "网关" / "192.168.20.1"; "MTU" / "1500".
+Separate compact checklist card with green checks:
+"临时地址已移除"
+"DHCP 管理已恢复"
+"接口状态已核对"
+Short explanatory text "DHCP 可能分配与之前不同的地址".
+Wide blue button "返回网络概览".
+This is the completed state; no countdown, no recovery-pending warning.
+
+RIGHT SCREEN:
+Back, title "恢复未完成".
+Ethernet card "USB 有线网卡", muted amber badge "待核对".
+Modest amber info panel, small warning icon, main message "Shizuku 连接已断开", secondary "暂时无法完成恢复".
+A white card heading "最近已知配置", small timestamp "09:41"; rows "IPv4" / "192.168.50.2 / 24"; "地址模式" / "临时静态"; small caption "当前状态尚未确认".
+Next compact white card heading "下一步", three simple numbered rows:
+"打开 Shizuku"
+"以 Root 模式启动并授权"
+"核对网卡后恢复原配置"
+Wide blue primary button "重新连接 Shizuku".
+Wide outlined secondary button "查看恢复步骤".
+Small bottom text "重新连接后先检查当前配置".
+CRITICAL: This right screen must NOT have any green recovery-complete check or a message saying already restored. Do not imply rollback still works without permission. No automatic direct-su bypass, no dangerous root commands.
+
+All three screens should be attractive, calm, aligned, readable and visibly part of the same application. Exact specified labels, no extra wording or invented functionalities.

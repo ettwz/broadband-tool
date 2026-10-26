@@ -1,0 +1,8 @@
+# Preserve upstream and generator output formatting; check handwritten sources.
+native/third_party/iperf-3.22/** -whitespace linguist-vendored
+apps/mobile/assets/licenses/** -whitespace
+apps/mobile/lib/platform/network_api.g.dart -whitespace linguist-generated
+apps/mobile/android/app/src/main/kotlin/dev/broadband/toolbox/NetworkApi.g.kt -whitespace linguist-generated
+apps/mobile/ios/Runner/NetworkApi.g.swift -whitespace linguist-generated
+apps/mobile/android/app/src/main/java/dev/broadband/toolbox/dnsapi/** -whitespace linguist-generated
+native/third_party/android-dnsresolver/** -whitespace linguist-vendored

@@ -1,0 +1,28 @@
+{
+  "iperf3": {
+    "version": "3.22",
+    "source": "https://github.com/esnet/iperf/releases/download/3.22/iperf-3.22.tar.gz",
+    "sha256": "1c0d0fb02c52626111d6e132db80edfbf27bbaff8bd9245df2a371dcb0b35a92",
+    "license": "BSD-3-Clause, see iperf-3.22/LICENSE",
+    "excluded_files": [
+      "src/private.pem",
+      "src/public.pem"
+    ],
+    "exclusion_reason": "Upstream authentication key fixtures are not distributed; this project builds without OpenSSL.",
+    "local_changes": [
+      "src/main.c: Android child-process network binding before socket creation and unblock inherited SIGUSR1 for bounded UDP receiver cleanup",
+      "src/iperf_server_api.c: JSON readiness event after server listen succeeds",
+      "src/iperf_pthread.c: treat already-finished Android threads as ESRCH before cancellation, retaining pthread_join cleanup"
+    ]
+  },
+  "android_dnsresolver": {
+    "version": 10,
+    "event_listener_version": 1,
+    "manifest": "android-dnsresolver/manifest.json",
+    "license": "Apache-2.0",
+    "generator": "tools/generate_dns_aidl.py",
+    "local_changes": [
+      "Java package relocated with original Binder descriptors preserved; official method order and structured parcelables retained"
+    ]
+  }
+}

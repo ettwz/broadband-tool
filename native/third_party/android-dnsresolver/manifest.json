@@ -1,0 +1,24 @@
+{
+  "license": "Apache-2.0",
+  "dnsresolver": {
+    "version": 10,
+    "source": "https://android.googlesource.com/platform/packages/modules/DnsResolver/+/c76ebe9a73f6f0d4eaf3a5264c3dd7afbd547b76/aidl_api/dnsresolver_aidl_interface/10/"
+  },
+  "event_listener": {
+    "version": 1,
+    "source": "https://android.googlesource.com/platform/frameworks/libs/net/+/8ef52686483cdff0040d22753bb516e99a96a88d/common/netd/aidl_api/netd_event_listener_interface/1/"
+  },
+  "files": {
+    "v10/.hash": "fc07e4e8e93105febab0c7ad3e4952e95f0f63d2f056d47bf9409d75cb27e0e7",
+    "v10/android/net/IDnsResolver.aidl": "7d12c49544056e07ec1c7619d48cd3cc3f59e8e1240ebd8253f917dd02786d44",
+    "v10/android/net/ResolverHostsParcel.aidl": "dfcc3729633864de0d7e6b362778668878fa3fdbf186f07c16fd0229fdaae4bb",
+    "v10/android/net/ResolverParamsParcel.aidl": "61f7cdb723b0677fe5748055c0c297c236028ae600184899f2b88ded36edb50e",
+    "v10/android/net/ResolverOptionsParcel.aidl": "ab7d2ff10c90118795f8a23be4459291e5d4e7e25a7bc86272eb95ef33f12403",
+    "v10/android/net/resolv/aidl/DnsHealthEventParcel.aidl": "b7c0df8590f905703a282c718460351aaa4f285c612f688054a68085ba85a3f4",
+    "v10/android/net/resolv/aidl/Nat64PrefixEventParcel.aidl": "6b6702a38100bf0b336581d5270e9ae66ab606b6870a1fdabc1a983cd464fdf7",
+    "v10/android/net/resolv/aidl/PrivateDnsValidationEventParcel.aidl": "ca331c46a192cdba973a8c3febf6f51d543dda5b9efe3e97e8abe0663fb006c9",
+    "v10/android/net/resolv/aidl/IDnsResolverUnsolicitedEventListener.aidl": "6da70177b711b439a85905d8c19c49bd10f26a239845cc1cd030e013127a823f",
+    "event-v1/.hash": "dcf27b7a590d73bbb7f38741b845f3700185792ea1881cafd6509c8425a7d513",
+    "event-v1/android/net/metrics/INetdEventListener.aidl": "51865bc8055cf830bb0e32559e826a7efee60d6d884ff78e000805f7ec6469c6"
+  }
+}

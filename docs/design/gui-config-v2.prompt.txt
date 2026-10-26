@@ -1,0 +1,43 @@
+Use case: ui-mockup. Create another consistent v2 GUI board for the Chinese home-network utility, using the reference for the EXACT visual language: three complete equally sized mobile screens, rounded flat panels, pale cool-gray page, white cards, strong black headings, refined blue controls, clean line icons, generous readable Chinese. Landscape 1536x1024 or larger. No perspective/3D hardware. Status time 09:41. Bottom navigation "概览", "Wi-Fi", "测速", "工具", 工具 selected on all screens.
+Board heading "家庭网络工具 · 系统与配置"; subtitle "高级功能 · 示例状态". Captions "07 系统 DNS 缓存", "08 有线临时配置", "09 应用后确认".
+
+LEFT SCREEN:
+Back arrow, title "系统 DNS 缓存".
+Network card Wi-Fi icon, "Home_5G", "192.168.1.23", green pill "Root 可用".
+White group with rows "作用网络" / "当前 Wi-Fi"; "系统 DNS" / "192.168.1.1".
+A clear information card with exact text "清理 Android 系统解析器缓存". Under it smaller text "不清理其他应用私有缓存、路由器或上游缓存".
+Checkbox row "同时清除本应用缓存", checkbox OFF.
+Primary blue button "清理当前网络缓存".
+Below a separate white result card headed "最近操作"; green small check and exact message "系统已接受清理请求"; timestamp "09:41"; small gray text "仅针对 Home_5G". An outlined button "重新查询验证".
+Do not claim cleared entries count, do not say all apps cache was cleared, do not claim a subsequent DNS query alone proves every cache was emptied.
+
+MIDDLE SCREEN:
+Back, title "有线临时配置".
+Ethernet card "USB 有线网卡", "当前：192.168.20.23", small Root badge.
+Small summary line "原配置：DHCP".
+Segments "DHCP" gray / "静态 IPv4" blue selected.
+White form grouped rows:
+"IPv4 地址" input "192.168.50.2"
+"前缀长度" input "24"
+"网关" input placeholder "可选，直连可留空"
+"MTU" input "1500"
+"临时时限" dropdown "5 分钟"
+Short neutral info block "仅修改所选有线网卡", second line "可能影响使用该网卡的其他应用".
+Large blue button "预览变更".
+Small footer "应用后有 30 秒确认时间". Do not claim permanent saving. Do not include editing Wi-Fi or cellular interfaces.
+
+RIGHT SCREEN:
+Back, title "确认临时配置".
+Selected interface slim row Ethernet icon "USB 有线网卡", green "Root 可用".
+A simple white main card with small amber status dot "等待确认". Large tabular number "25" with suffix "秒"; caption "未确认将恢复原配置".
+White comparison group heading "本次变更", rows:
+"地址模式" / "DHCP → 静态"
+"IPv4" / "192.168.50.2 / 24"
+"网关" / "未设置"
+"MTU" / "1500"
+"使用时限" / "5 分钟"
+Two small green-check lines "地址已生效" and "直连路由已核对".
+Wide blue button "继续临时使用". Wide outlined secondary button "立即恢复".
+Small helper text "确认仅延续本次临时会话". No completed recovery badge, no claim of permanent saving.
+
+Composition: preserve the reference's understated premium mobile utility design, legible text and tidy row alignment. These are sample states, not real device results. Use exact Chinese labels. No extra root features, no command terminal, no dramatic warning decoration.

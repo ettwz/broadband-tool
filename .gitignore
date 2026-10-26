@@ -1,0 +1,64 @@
+# ---> Android
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log/OS Files
+*.log
+
+# Android Studio generated files and folders
+captures/
+.externalNativeBuild/
+.cxx/
+*.aab
+*.apk
+output-metadata.json
+
+# IntelliJ
+*.iml
+.idea/
+/.idea
+/.vscode
+/.devcontainer
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+
+# Keystore files
+*.jks
+*.keystore
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Google Services (e.g. APIs or Firebase)
+google-services.json
+
+# Android Profiling
+*.hprof
+
+# Local WSL build toolchains and caches
+.toolchains/
+.cache/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+.env
+.env.*
+dist/
+__pycache__/
+*.py[cod]
+# Rebuilt from the vendored source by tools/build_iperf.py.
+apps/mobile/android/app/src/main/jniLibs/*/libiperf_exec.so
+# Generated, public, debug-only certificate for the local HTTPS test.
+apps/mobile/android/app/src/debug/res/raw/web_fixture.crt
+apps/mobile/android/app/src/debug/res/xml/network_security_config.xml

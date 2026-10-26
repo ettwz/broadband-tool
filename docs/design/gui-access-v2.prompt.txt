@@ -1,0 +1,45 @@
+Use case: ui-mockup. Input image is a visual STYLE reference for the existing home network diagnostic app. Create a redesigned v2 GUI board with THREE full-height mobile screens in a row, preserving the excellent crisp, restrained light-gray/white/blue visual style, card geometry, typography, line icons, four-item bottom navigation, equal screen sizes and flat frontal view. White cards on a cool very light gray background. No 3D phones, no perspective, no neon, no giant root padlock decoration. Practical shippable Android GUI. Landscape 1536x1024 or larger, sharp Chinese typography.
+
+Top board heading "家庭网络工具 · 高级模式"; subtitle "KernelSU Next + Shizuku · 界面示例".
+Panel captions "01 工具入口", "02 高级授权", "03 高级工具".
+All screens status time 09:41. Bottom nav "概览", "Wi-Fi", "测速", "工具"; 工具 selected blue in every panel.
+
+LEFT SCREEN:
+Title "网络工具", small settings icon.
+Connection card: Wi-Fi icon, "Home_5G", "Wi-Fi · IPv4", "192.168.1.23", small "切换" button.
+Segmented selector "基础工具" blue selected / "高级工具" unselected.
+White grouped list with five full rows:
+"Ping" secondary "检查延迟与丢包"
+"TCPing" secondary "检查 TCP 端口"
+"Telnet" secondary "连接设备终端"
+"Traceroute" secondary "查看逐跳路径"
+"DNS / dig" secondary "查询域名解析"
+Each has relevant clean line icon and trailing chevron.
+Small blue-accent card at bottom title "高级权限已连接", secondary "Shizuku · Root 模式", trailing text "管理". Small footer note "基础工具无需 Root". Keep enough whitespace and large touch areas. Do not add new fifth bottom nav.
+
+MIDDLE SCREEN:
+Back arrow and title "高级访问".
+Intro text "连接 Shizuku，启用高级诊断".
+White configuration card with THREE distinct numbered steps vertically, thin connected line:
+1 "KernelSU Next" / "Root 环境已配置" / green check.
+2 "Shizuku 服务" / "已运行 · Root 模式" / green check.
+3 "本应用授权" / "尚未授权" / amber status.
+Below a simple pale blue explanatory card, exact two lines:
+"KernelSU Next 提供 Root"
+"Shizuku 管理本应用访问"
+A wide blue button "通过 Shizuku 授权". Below an outlined secondary button "打开 Shizuku". Small bottom note "授权后逐项检查功能是否可用". No successful authorization shown on this panel, do not claim that merely installing Shizuku grants root. No UID, SELinux, shell, code or implementation jargon in default GUI.
+
+RIGHT SCREEN:
+Title "网络工具", small settings icon.
+Connection card Ethernet icon, "USB 有线网卡", "IPv4 · 192.168.20.23", small "切换".
+Segments "基础工具" unselected / "高级工具" blue selected.
+Slim status pill with green dot "Shizuku · Root 模式" and link "管理".
+Four large beautiful stacked option rows/cards, relevant simple line icons, each trailing chevron and small green "可用":
+"按网卡抓包" / "观察报文，导出抓包文件"
+"ARP / DHCP 排障" / "检查地址占用与获取过程"
+"系统 DNS 缓存" / "清理当前网络的系统缓存"
+"有线临时配置" / "临时改地址，结束后恢复"
+Small neutral footer "功能可用性按当前设备检查".
+Do not add firewall, weak-network emulation, PPPoE, Wi-Fi monitor or unrelated tools.
+
+Invariants: Chinese must be accurate and legible. Same underlying product styling as reference, with compact orderly cards and blue buttons. Only the four approved advanced features. This is a conceptual sample, no claim of actual measured root support.

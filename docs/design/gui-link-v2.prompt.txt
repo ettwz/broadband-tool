@@ -1,0 +1,38 @@
+Use case: ui-mockup. Create the next matching v2 board for the Chinese home-network diagnostic app, using the reference image as exact visual style reference. THREE complete mobile screens across a light cool gray landscape board; equal panel sizes, white grouped cards, restrained blue accents, green/amber status, crisp legible Chinese, neat compact rows, flat front view, no 3D phones. Same four bottom nav items "概览", "Wi-Fi", "测速", "工具", 工具 selected. Status time 09:41. Heading "家庭网络工具 · 链路排障"; subtitle "高级功能 · 示例数据". Panel captions "04 按网卡抓包", "05 ARP 检查", "06 DHCP 观察". Keep interface names and data precise, no unsupported Wi-Fi monitor or TLS decryption.
+
+LEFT:
+Back chevron, title "按网卡抓包".
+Selected interface card with Ethernet icon: "USB 有线网卡", "192.168.20.23", tiny green pill "Root 可用".
+Configuration white card: "过滤" / "IPv4 + ARP"; "截取长度" / "256 B"; "停止条件" / "60 秒或 20 MB".
+Capture status card blue dot and "抓包中", right "18 / 60 秒"; three small aligned metric cells: "数据包" "1,248", "已保存" "286 KB", "丢包" "0".
+White packet list section "最近报文", three rows each with colored protocol badge and legible detail:
+"DNS" "192.168.20.23 → 192.168.20.1"
+"ARP" "查询 192.168.20.1"
+"TCP" "192.168.20.23 → 192.168.20.10"
+A quiet note "仅显示当前网卡观察到的报文".
+Wide blue button "停止并保存"; small footer "结束后可导出 pcap 文件". No active export button before stop.
+
+MIDDLE:
+Back and title "ARP / DHCP 排障".
+Interface row "USB 有线网卡 · IPv4", small green Root badge.
+Segments "ARP 检查" blue selected / "DHCP 观察" gray.
+Form card label "目标 IPv4", field "192.168.20.10"; row "检查方式" / "地址占用"; row "发送次数" / "3 次".
+Wide blue button "开始检查".
+Result card heading "检查结果", modest AMBER badge "地址已被使用", not an alarm of confirmed IP conflict.
+Rows: "响应地址" / "192.168.20.10"; "MAC" / "02:11:22:33:44:55"; "收到响应" / "3 / 3"; "平均耗时" / "0.8 ms".
+Bottom small info card "无回应不代表地址一定空闲". No enumeration of other devices.
+
+RIGHT:
+Back and title "ARP / DHCP 排障".
+Interface card Ethernet icon, "USB 有线网卡", amber text "等待获取 IPv4".
+Segments "ARP 检查" gray / "DHCP 观察" blue selected.
+Main white timeline card heading "正在观察", right "8 / 30 秒". Four vertical steps linked by thin line:
+"Discover" green check, secondary "已发现请求";
+"Offer" green check, secondary "已收到地址提议";
+"Request" green check, secondary "已发现地址请求";
+"ACK" amber hollow icon, secondary "尚未观察到确认".
+Secondary white card title "收到的提议", rows "DHCP 服务器" / "192.168.20.1"; "提议地址" / "192.168.20.23"; "DNS" / "192.168.20.1".
+Wide outlined blue button "停止观察". Smaller secondary text action "发送发现请求".
+Small footer note "观察不会自动修改网卡配置". Never say IP assigned while ACK is pending.
+
+Keep the design aligned, premium but practical. This is a concept mockup with sample data. Do not add a fifth nav item or any extra unrelated root features.

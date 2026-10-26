@@ -1,0 +1,89 @@
+# GUI image prompts v1
+Mode: built-in image_gen
+Date: 2026-10-22
+
+## Core board
+Use case: ui-mockup.
+Create one high-resolution, polished mobile app GUI design presentation board for a Chinese IPv4 home-network diagnostic app. Landscape canvas approximately 2400 x 1600, with THREE complete tall app screen panels in one horizontal row. Large, sharp, highly legible typography and charts. It must look like a practical, implementable premium mobile utility UI, not concept art. No perspective, no hands, no desk, no glossy phone hardware, no 3D, no neon cyberpunk. Thin rounded screen boundaries, very subtle shadow; all screens equally sized and fully visible, including bottom navigation. Quiet light gray outer background.
+
+Style: Inspired by the restrained information hierarchy of the iOS Device Lab app, without copying assets. Very light cool-gray page backgrounds, white rounded grouped cards, near-black headings, cool gray secondary labels, restrained saturated blue and teal accents. Clean line icons, generous but efficient spacing, flat design, crisp hairline dividers. Chinese sans-serif similar to PingFang/Noto Sans CJK; tabular numerals. Avoid ornamental circular speedometer gauges. Data and chart accuracy is crucial. All Chinese labels must be accurately spelled, never gibberish. Use exact specified text, avoid inventing extra technical claims.
+
+Small editorial board title at top: "家庭网络工具" and subtitle "界面概念 · 示例数据". Above/below each phone use short label "01 网络概览", "02 Wi-Fi 信道", "03 局域网测速". Inside every screen use top status time "09:41", minimal signal/battery icons, and bottom navigation four items with thin icons: "概览", "Wi-Fi", "测速", "工具". Selected item blue, other items gray.
+
+SCREEN 1: Network overview, title "网络概览", small refresh and settings icons. Prominent compact selected-network card: blue Wi-Fi icon, "Home_5G", green status dot "已连接", secondary "Wi-Fi · IPv4", trailing rounded action "切换". Below a hero white card with blue tiny label "本机 IPv4" and large "192.168.1.23"; supporting row "网关 192.168.1.1". A grouped card titled "连接信息" with clearly aligned rows: "子网掩码" / "255.255.255.0"; "DNS" / "192.168.1.1"; "MTU" / "1500". A public-address card "公网 IPv4", "203.0.113.42", a tiny caption "示例地址", small copy icon. A smaller grouped card "可用网卡": selected "Wi-Fi · Home_5G" with blue check; second "USB 有线网卡" with Ethernet icon, secondary "192.168.20.23", action "切换". At bottom small link "查看全部网络信息". Bottom nav "概览" selected.
+
+SCREEN 2: Title "Wi-Fi 检查"; compact same top connection pill "Wi-Fi · Home_5G". Segmented tabs EXACT: "网络", "Comparison", "Channels", with Channels selected. Secondary band tabs "2.4 GHz", "5 GHz", "6 GHz" with 2.4 GHz selected. Large main chart card headed "信道分布", subtitle "信号强度 · dBm". The graph is a real Wi-Fi channel overlap plot, not a waveform: y ticks -30, -50, -70, -90 from top to bottom; x ticks 1, 3, 6, 9, 11, 13 increasing left to right. Three translucent bell/trapezoidal spectral envelopes centered at channels 1, 6, 11, peaks -42, -67, -55 respectively. Blue, teal and muted amber, with clean outlines and subtle fills; correct geometric order and useful axes. Under chart tiny text "信道重叠示意". List below with matching colored dots: "Home_2.4G" right "-42 dBm", secondary "信道 1 · 20 MHz"; "Neighbor_A" right "-67 dBm", secondary "信道 6 · 20 MHz"; "LivingRoom" right "-55 dBm", secondary "信道 11 · 20 MHz". Bottom small timestamp "最近扫描：8 秒前", modest outlined "暂停扫描". No claims of measured noise, congestion percentage, or signal interference percentage. Bottom nav Wi-Fi selected.
+
+SCREEN 3: Title "测速"; selected-network pill "USB 有线网卡 · IPv4". Top segmented tabs "局域网", "公网", with 局域网 selected. Secondary role tabs "客户端", "服务端", with 客户端 selected. Compact configuration card rows: "目标地址" / "192.168.20.10"; "端口" / "5201"; "协议" / "TCP"; "方向" / "本机发送". Large result section tiny header "当前吞吐", big number "936.4" with "Mbps" on same baseline; subdued status "测试中 · 6 / 10 秒". Small clean sparkline chart showing realistic nearly-flat throughput around 930 Mbps after initial ramp; axis labels "0 s", "5 s", "10 s". Two equal small metric cells "已传输" / "702.3 MB" and "并发流" / "1". Wide outlined stop button "停止测试". Subtle helper "iperf3 · 前台运行". Bottom nav 测速 selected.
+
+Composition: Screen content large enough to read, all three pages coherent and convincingly shippable. No invented app brand or logo, no advertising, no watermark, no dramatic decoration. Preserve carefully aligned cards, strong whitespace, sensible touch target sizes. These are explicitly mock data, not actual test results.
+
+## Features board
+Use case: ui-mockup, matching UI design board edit.
+Input image 1 is the STYLE AND LAYOUT REFERENCE for this project's first mobile GUI board. Create the SECOND matching board by retaining its exact visual language: three complete equally sized tall app windows side by side on a quiet light cool-gray background, white cards, restrained blue/teal accents, same crisp Chinese font, rounded corners, large legible text and bottom navigation. Replace the screen content as specified below. All panels visible, no perspective, no 3D hardware. This is a separate set of screens, not three variations of the same page. Approximate 2400x1600 landscape, high resolution.
+
+Board title "家庭网络工具"; subtitle "功能界面 · 示例数据". Panel captions "04 信号对比", "05 公网测速", "06 诊断工具". Keep status time 09:41 and bottom navigation "概览", "Wi-Fi", "测速", "工具". No invented branding. Chinese exact and clean.
+
+LEFT / screen 04:
+Page title "Wi-Fi 检查". Network card "Home_5G", "已连接", "Wi-Fi · IPv4", trailing "切换" as in reference. Tabs "网络", "Comparison", "Channels"; Comparison blue-selected. Main chart card "信号趋势", subtitle "最近 5 分钟 · dBm". Accurate line plot with horizontal time labels "09:36", "09:38", "09:41", vertical ticks -30,-50,-70,-90. Three lines: Home_5G blue around -42 dBm, LivingRoom teal around -55, Neighbor_A amber around -67. Small realistic fluctuations, no extreme drama, consistent amplitudes and legends. A compact list below with colored checkboxes selected: Home_5G / -42 dBm; LivingRoom / -55 dBm; Neighbor_A / -67 dBm. Then three metric cells for selected Home_5G: "最强" "-39 dBm", "平均" "-43 dBm", "最弱" "-48 dBm". Footer "最近扫描：8 秒前", outlined button "暂停扫描". Bottom nav Wi-Fi selected.
+
+MIDDLE / screen 05:
+Page title "测速". Same current Wi-Fi card. Top switch "局域网" / "公网", 公网 selected. Clear short section header "选择测速服务". Two LARGE stacked tidy white service cards with generous spacing:
+First card blue tiny badge "国内", bold "中国科学技术大学", secondary "测试到中科大站点的连接速度", small text "test.ustc.edu.cn", blue button "打开测速".
+Second card teal tiny badge "国际服务", bold "Netflix FAST", secondary "测试到 Netflix 节点的连接速度", small text "fast.com", outlined blue button "打开测速".
+A modest information card near bottom with small info icon and concise text: "测速会产生较大流量", second line "打开官方页面后开始", third line "Netflix 节点不一定在国外". NO fake speed results, NO automatic-start spinner, NO unsupported claim that IPv4 binding has already been verified. UI is the service selection page before launch. Bottom nav 测速 selected.
+
+RIGHT / screen 06:
+Title "网络工具". Compact network card same style "Home_5G", "Wi-Fi · IPv4", action "切换". A grouped card with five clean rows, each with small blue/turquoise line icon, title, subtle description, trailing chevron:
+"Ping" / "检查延迟与丢包"
+"TCPing" / "检查 TCP 端口"
+"Telnet" / "连接设备终端"
+"Traceroute" / "查看逐跳路径"
+"DNS / dig" / "查询域名解析"
+Below, a visually distinct light blue quick-action card titled "快速检查" with text "当前网关" and large "192.168.1.1"; blue action button "Ping 网关".
+A lower white compact card "最近使用" with two rows: "Ping · 192.168.1.1" small "2 分钟前"; "DNS · example.com" small "8 分钟前". Keep useful density without crowding. Bottom nav 工具 selected.
+
+Constraints: match the reference carefully for theme, typography, app window shape, headings, spacing, navigation and card language. Tech feeling from precision and tidy information only. No futuristic decorations, no duplicated labels, no gibberish, no fake buttons claiming to clear system DNS, no unsupported Wi-Fi congestion metrics.
+
+## Details board
+Use case: ui-mockup.
+Input image 1 is the exact style/layout reference. Produce a THIRD matching design presentation board for the same Chinese IPv4 home-network diagnostic app. Keep the same three equally sized tall app panels, light cool gray canvas, white cards, modest blue/teal accents, flat UI, thin rounded panel edges, status bars, legible Chinese font, card spacing, icon language and bottom navigation. No perspective or 3D device hardware. Crisp high-resolution landscape approximately 2400x1600.
+
+Board title "家庭网络工具"; subtitle "连接与诊断 · 示例数据". Panel captions "07 网卡选择", "08 iperf3 服务端", "09 DNS 检查". Accurate Chinese, no invented logo or extra feature. Status time 09:41 throughout. Nav labels "概览", "Wi-Fi", "测速", "工具".
+
+LEFT / screen 07:
+Show the network overview page behind a genuine mobile bottom sheet. Upper portion of underlying overview visible with title "网络概览" and current Wi-Fi card "Home_5G"; background slightly dimmed, still readable. Bottom sheet rises to cover lower two-thirds of screen, with top grabber, title "选择网络", close X, small explanation "仅切换本应用的诊断网络".
+Inside bottom sheet two large selectable option cards:
+Option1 Wi-Fi icon, "Wi-Fi · Home_5G", secondary "192.168.1.23", small neutral badge "当前使用", empty radio button after the user selects option2.
+Option2 Ethernet icon, "USB 有线网卡", secondary "192.168.20.23", green small "已连接", BLUE selected radio and subtle blue outline.
+Below a very quiet info line "不会自动切换到蜂窝网络".
+Primary full-width blue CTA "使用有线网络". Enough bottom safe-area padding. No running task or unnecessary confirmation warning.
+
+MIDDLE / screen 08:
+Page title "测速". Connection card as reference with Ethernet icon, "USB 有线网卡 · IPv4", green "已连接", IP "192.168.20.23", trailing "切换".
+Segments "局域网" / "公网" with 局域网 selected. Second segments "客户端" / "服务端" with 服务端 selected.
+Large white listening card with a small blue outlined Ethernet/server icon; clear main status "等待连接" with small breathing-dot illustration but static; secondary "服务端已启动".
+Structured rows "监听地址" / "192.168.20.23"; "端口" / "5201"; "连接设备" / "暂无".
+Below another tidy white card title "从另一台设备连接", text "在电脑上运行 iperf3 客户端", a pale code field with two wrapped lines:
+"iperf3 -c 192.168.20.23"
+"-4 -t 10"
+Small copy icon.
+Footer info "完成一场测试后停止", "切到后台将停止监听". Wide outlined stop button "停止服务端". Nav 测速 selected. Do not show fake transfer speed while waiting, do not imply background persistent service.
+
+RIGHT / screen 09:
+Header back chevron, title "DNS 检查", small history icon. Slim selected-network row "Wi-Fi · Home_5G" with "IPv4" badge.
+A white query form with clear rows:
+"域名" / "example.com"
+"记录类型" / "A" with down arrow
+"DNS 服务器" / "192.168.1.1"
+"传输方式" / "UDP" with selector
+Toggle "绕过缓存查询" visibly ON blue.
+Wide blue button "查询".
+Result white card heading "查询结果"; green badge "NOERROR", right small "12 ms"; label "ANSWER"; row "example.com" and blue type badge "A"; next line large "203.0.113.10"; fine text "TTL 300 秒 · 示例记录". All data is illustrative.
+A restrained outline button or row "清除本应用 DNS 缓存"; beneath it exact small explanatory text "仅影响本应用，不清理系统或路由器缓存". No misleading system cleanup success.
+Bottom nav 工具 selected.
+
+Make the whole board visually cohesive with the reference, with precise alignment, adequate whitespace and readable scientific units. No decorative charts on these screens, no watermarks, no gibberish, no omitted role tabs.
+
+## Core board final targeted correction
+Edit this existing mobile GUI design board. Preserve its full layout, three app screens, typography, colors, all Chinese text and all numbers except TWO x-axis labels in the small throughput chart on the RIGHTMOST screen. That screen is running a test at "6 / 10 秒", so the curve should cover only the six elapsed seconds. Change the center x-axis text "5 s" to "3 s", and change the rightmost x-axis text "10 s" to "6 s". Keep left x-axis text "0 s". Keep the curve unchanged, so it now spans 0–6 seconds. Keep the current throughput 936.4 Mbps, transferred 702.3 MB, running status, stop button, and entire other two screens exactly unchanged. No other changes.
