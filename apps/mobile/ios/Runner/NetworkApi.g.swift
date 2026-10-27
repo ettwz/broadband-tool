@@ -982,6 +982,7 @@ class NetworkApiPigeonCodec: FlutterStandardMessageCodec, @unchecked Sendable {
 
 /// Generated protocol from Pigeon that represents a handler of messages from Flutter.
 protocol NetworkHostApi {
+  func getAppVersion() throws -> String
   func getSnapshot(completion: @escaping (Result<PlatformSnapshot, Error>) -> Void)
   func selectNetwork(networkId: String) throws
   func requestNetworkPermissions(completion: @escaping (Result<PermissionData, Error>) -> Void)
@@ -1004,6 +1005,19 @@ class NetworkHostApiSetup {
   /// Sets up an instance of `NetworkHostApi` to handle messages through the `binaryMessenger`.
   static func setUp(binaryMessenger: FlutterBinaryMessenger, api: NetworkHostApi?, messageChannelSuffix: String = "") {
     let channelSuffix = messageChannelSuffix.count > 0 ? ".\(messageChannelSuffix)" : ""
+    let getAppVersionChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.broadband_tool.NetworkHostApi.getAppVersion\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      getAppVersionChannel.setMessageHandler { _, reply in
+        do {
+          let result = try api.getAppVersion()
+          reply(wrapResult(result))
+        } catch {
+          reply(wrapError(error))
+        }
+      }
+    } else {
+      getAppVersionChannel.setMessageHandler(nil)
+    }
     let getSnapshotChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.broadband_tool.NetworkHostApi.getSnapshot\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
       getSnapshotChannel.setMessageHandler { _, reply in

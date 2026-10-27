@@ -225,6 +225,7 @@ class CaptureFileData {
 
 @HostApi()
 abstract class NetworkHostApi {
+  String getAppVersion();
   @asyncCallback
   PlatformSnapshot getSnapshot();
   void selectNetwork(String networkId);

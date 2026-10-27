@@ -1,6 +1,6 @@
 # 文档总索引
 
-doc_id: INDEX · 2026-10-26 · 状态：0.1.4 开发测试 APK 已交付
+doc_id: INDEX · 2026-10-27 · 状态：0.1.5 开发测试 APK 已交付
 
 先读索引，再读相关文件。规划规格与实际验证记录分别维护；当前实现见 D07，逐项验证状态及 OnePlus 13 人工反馈见 D09。`建议`不等于已验证，未单独记录的专项场景继续保留。
 
@@ -32,7 +32,7 @@ doc_id: INDEX · 2026-10-26 · 状态：0.1.4 开发测试 APK 已交付
 | A04 | [运行与恢复](architecture/lifecycle.md) | 并发、取消、后台、历史、异常退出 |
 | A05 | [高级执行边界](architecture/privileged-service.md) | 权限状态、UserService、接口与白名单操作 |
 | A06 | [临时配置与恢复](architecture/network-recovery.md) | 30 秒确认、会话期限、失权与恢复失败 |
-| F01 | [Wi-Fi 检查](features/wifi.md) | Comparison、Channels、RSSI 曲线 |
+| F01 | [Wi-Fi 检查](features/wifi.md) | 信号对比、信道图、扫描入口 |
 | F02 | [局域网测速](features/lan-speed.md) | iperf3 client / server、TCP / UDP |
 | F03 | [公网测速](features/internet-speed.md) | 国内 / 国际入口与网页边界 |
 | F04 | [连通性工具](features/diagnostics.md) | ping、tcping、交互式 telnet |

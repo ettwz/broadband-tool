@@ -120,14 +120,22 @@ class _HomeShellState extends ConsumerState<HomeShell>
             ),
             IconButton(
               tooltip: '关于与许可',
-              onPressed: () => showAboutDialog(
-                context: context,
-                applicationName: 'broadband-tool',
-                applicationVersion: '0.1.4',
-                children: const [
-                  Text('IPv4 家庭网络诊断\n普通工具与可选高级模式\n结果与历史仅保存在本机。'),
-                ],
-              ),
+              onPressed: () async {
+                try {
+                  final version = await controller.host.getAppVersion();
+                  if (!context.mounted) return;
+                  showAboutDialog(
+                    context: context,
+                    applicationName: 'broadband-tool',
+                    applicationVersion: version,
+                    children: const [
+                      Text('IPv4 家庭网络诊断\n普通工具与可选高级模式\n结果与历史仅保存在本机。'),
+                    ],
+                  );
+                } on Exception catch (error) {
+                  if (context.mounted) showError(context, error);
+                }
+              },
               icon: const Icon(Icons.info_outline_rounded),
             ),
           ],

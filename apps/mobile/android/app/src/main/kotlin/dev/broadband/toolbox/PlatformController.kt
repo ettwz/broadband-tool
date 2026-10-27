@@ -33,6 +33,8 @@ class PlatformController(private val activity: Activity, private val flutter: Ne
     private val advanced = AdvancedAccess(activity) { main.post { publishSnapshot() } }
     private val ordinary = OrdinaryTasks(activity, registry)
 
+    override fun getAppVersion(): String = BuildConfig.VERSION_NAME
+
     private fun snapshot() = PlatformSnapshot(
         "android", Build.VERSION.SDK_INT.toLong(), registry.data(), registry.permissions(),
         registry.accessPoints, registry.scanStatus, registry.scanUpdatedAt, advanced.snapshot(), registry.selectedId,

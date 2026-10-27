@@ -170,9 +170,10 @@ class AppController extends ChangeNotifier implements NetworkFlutterApi {
   }
 
   Future<void> scan({bool periodic = true}) async {
-    scanPaused = !periodic;
+    scanPaused = true;
     _scanTimer?.cancel();
     await host.requestWifiScan();
+    scanPaused = !periodic;
     if (periodic) {
       _scanTimer = Timer.periodic(const Duration(seconds: 31), (_) async {
         if (activeRun != null || scanPaused) return;

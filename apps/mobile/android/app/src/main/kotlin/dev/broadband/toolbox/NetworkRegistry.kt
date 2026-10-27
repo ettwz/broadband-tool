@@ -88,16 +88,23 @@ class NetworkRegistry(
         val lost = mutableListOf<Pair<String, String>>()
         synchronized(lock) {
             val available = manager.allNetworks.toList()
-            val ids = available.map { it.networkHandle.toString() }.toSet()
-            for (id in networks.keys.toList()) if (id !in ids) {
-                networks.remove(id); signatures.remove(id)
-                if (selectedId == id) selectedId = null
-                lost += id to "NETWORK_LOST"
-            }
+            val ids = available.map { it.networkHandle.toString() }.toMutableSet()
             for (network in available) {
                 val capabilities = manager.getNetworkCapabilities(network) ?: continue
                 val properties = manager.getLinkProperties(network) ?: continue
                 val id = network.networkHandle.toString()
+                val transport = when {
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN) -> "vpn"
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> "wifi"
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> "ethernet"
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> "cellular"
+                    else -> "other"
+                }
+                if (!showInNetworkOverview(transport,
+                        capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET))) {
+                    ids.remove(id)
+                    continue
+                }
                 val addresses = properties.linkAddresses.filter { it.address is Inet4Address }
                 val gateway = properties.routes.firstOrNull { it.isDefaultRoute && it.gateway is Inet4Address }
                     ?.gateway?.hostAddress
@@ -108,13 +115,6 @@ class NetworkRegistry(
                 val generation = if (signatures[id] == signature && old != null) old.generation else ++serial
                 if (old != null && old.generation != generation) lost += id to "NETWORK_CHANGED"
                 signatures[id] = signature
-                val transport = when {
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN) -> "vpn"
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> "wifi"
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> "ethernet"
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> "cellular"
-                    else -> "other"
-                }
                 val info = if (transport == "wifi") {
                     (if (Build.VERSION.SDK_INT >= 29) capabilities.transportInfo as? WifiInfo else null)
                         ?: runCatching { wifi?.connectionInfo }.getOrNull()
@@ -135,6 +135,11 @@ class NetworkRegistry(
                     gateway, mtu?.toLong(), ssid, bssid, info?.rssi?.toLong(),
                     info?.frequency?.takeIf { it > 0 }?.toLong(), info?.linkSpeed?.takeIf { it > 0 }?.toLong(),
                 )
+            }
+            for (id in networks.keys.toList()) if (id !in ids) {
+                networks.remove(id); signatures.remove(id)
+                if (selectedId == id) selectedId = null
+                lost += id to "NETWORK_LOST"
             }
             if (selectedId == null && !explicitlySelected) {
                 selectedId = networks.values.firstOrNull { it.second.transport == "wifi" }?.second?.id

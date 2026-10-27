@@ -21,6 +21,8 @@ doc_id: A02 · v2 草案；T04 冻结公共字段，T15 扩展高级边界
 
 ## 操作边界
 
+`NetworkHostApi.getAppVersion()` 返回当前安装包的展示版本，Android 使用与 APK manifest 同源的 `BuildConfig.VERSION_NAME`。“关于”页按需读取，只显示 `x.y.z`，不维护第二份手写版本号。内部构建号仍保留在安装包中，不在“关于”页展示。
+
 `listNetworks / watchNetworks / getCapabilities / requestPermission / selectNetwork / startTask / cancelTask / watchTask / clearAppDnsCache`。`startTask` 立即返回 taskId；结果通过事件流返回；重复 requestId 返回同一任务，不重复发流量。telnet 增加 `sendInput(taskId, bytes)` 和 `resizeTerminal`；iperf server 通过同一任务流报告监听与会话。
 
 ## 错误码与状态

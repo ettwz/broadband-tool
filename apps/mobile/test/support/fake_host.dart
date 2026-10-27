@@ -54,7 +54,12 @@ class FakeHost extends NetworkHostApi {
   final Directory directory;
   final requests = <TaskRequestData>[];
   final stopped = <String>[];
+  String appVersion = '9.8.7';
+  int scanRequests = 0;
+  Exception? scanError;
   PlatformSnapshot state = fixtureSnapshot();
+  @override
+  Future<String> getAppVersion() async => appVersion;
   @override
   Future<PlatformSnapshot> getSnapshot() async => state;
   @override
@@ -73,7 +78,11 @@ class FakeHost extends NetworkHostApi {
   @override
   Future<PermissionData> requestNetworkPermissions() async => state.permissions;
   @override
-  Future<void> requestWifiScan() async {}
+  Future<void> requestWifiScan() async {
+    scanRequests++;
+    if (scanError != null) throw scanError!;
+  }
+
   @override
   Future<void> selectNetwork(String networkId) async {
     state.selectedNetworkId = networkId;

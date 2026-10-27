@@ -116,264 +116,306 @@ class _WifiPageState extends State<WifiPage> {
                 DateTime.fromMillisecondsSinceEpoch(state.scanUpdatedAt),
               )
               .inSeconds;
-    return PageBody(
+    return Column(
       children: [
-        NetworkCard(
-          controller: controller,
-          onSelect: () => chooseNetwork(context, controller),
-        ),
-        SegmentedButton<String>(
-          showSelectedIcon: false,
-          segments: const [
-            ButtonSegment(value: 'networks', label: Text('网络')),
-            ButtonSegment(value: 'comparison', label: Text('Comparison')),
-            ButtonSegment(value: 'channels', label: Text('Channels')),
-          ],
-          selected: {tab},
-          onSelectionChanged: (value) => setState(() => tab = value.first),
-        ),
-        if (permission?.fineLocation != true)
-          Notice(
-            '系统要求精确定位权限，才能显示周边 Wi-Fi。',
-            action: TextButton(
-              onPressed: () async {
-                try {
-                  await controller.requestPermissions();
-                } on Exception catch (error) {
-                  if (context.mounted) showError(context, error);
-                }
-              },
-              child: const Text('允许扫描所需权限'),
-            ),
-          ),
-        if (permission?.fineLocation == true &&
-            permission?.locationEnabled != true)
-          Notice(
-            '请开启系统定位服务。App 不会获取或上传 GPS 位置。',
-            action: TextButton(
-              onPressed: () => controller.host.openSystemSettings('location'),
-              child: const Text('打开定位设置'),
-            ),
-          ),
-        if (permission?.wifiEnabled != true)
-          Notice(
-            'Wi-Fi 尚未开启。',
-            action: TextButton(
-              onPressed: () => controller.host.openSystemSettings('wifi'),
-              child: const Text('打开 Wi-Fi 设置'),
-            ),
-          ),
-        if (tab != 'comparison')
-          SegmentedButton<String>(
-            showSelectedIcon: false,
-            segments: const [
-              ButtonSegment(value: '2.4', label: Text('2.4 GHz')),
-              ButtonSegment(value: '5', label: Text('5 GHz')),
-              ButtonSegment(value: '6', label: Text('6 GHz')),
-            ],
-            selected: {band},
-            onSelectionChanged: (value) => setState(() => band = value.first),
-          ),
-        if (tab == 'channels')
-          Panel(
-            title: '信道分布',
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Text(
-                  '接收信号强度 · dBm',
-                  style: TextStyle(color: muted, fontSize: 12),
-                ),
-                const SizedBox(height: 12),
-                ChannelChart(aps: visible, band: band),
-                const Text(
-                  '频率重叠示意，不代表实测占用率或噪声',
-                  style: TextStyle(color: muted, fontSize: 11),
-                ),
-              ],
-            ),
-          ),
-        if (tab == 'comparison')
-          Panel(
-            title: '信号趋势',
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Text(
-                  '最近 10 分钟 · 按实际扫描时间采样',
-                  style: TextStyle(color: muted, fontSize: 12),
-                ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  height: 225,
-                  child: SignalChart(controller: controller, aps: chosen),
-                ),
-                if (chosen.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12),
-                    child: Wrap(
-                      spacing: 12,
-                      runSpacing: 6,
-                      children: [
-                        for (var i = 0; i < chosen.length; i++)
-                          Text(
-                            '● ${chosen[i].ssid}',
-                            style: TextStyle(
-                              color: apColor(chosen[i].bssid),
-                              fontSize: 12,
-                            ),
-                          ),
-                      ],
+        Align(
+          alignment: Alignment.topCenter,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 760),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  FilledButton.icon(
+                    key: const ValueKey('wifi-scan-toggle'),
+                    onPressed: () async {
+                      if (!controller.scanPaused) {
+                        controller.pauseScan();
+                        return;
+                      }
+                      try {
+                        await controller.scan();
+                      } on Exception catch (error) {
+                        if (context.mounted) showError(context, error);
+                      }
+                    },
+                    icon: Icon(
+                      controller.scanPaused ? Icons.radar : Icons.pause,
                     ),
+                    label: Text(controller.scanPaused ? '开始扫描' : '暂停扫描'),
                   ),
-                for (final ap in chosen)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      '${ap.ssid} (${ap.bssid})\n${signalSummary(controller, ap)}',
-                      style: TextStyle(fontSize: 11, color: apColor(ap.bssid)),
-                    ),
+                  const SizedBox(height: 6),
+                  Text(
+                    age == null
+                        ? '尚未扫描'
+                        : '最近扫描：${age < 60 ? '$age 秒' : '${age ~/ 60} 分钟'}前',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: muted, fontSize: 12),
                   ),
-              ],
-            ),
-          ),
-        TextField(
-          onChanged: (value) => setState(() => filter = value),
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.search),
-            hintText: '筛选网络名称',
-          ),
-        ),
-        DropdownButtonFormField<int>(
-          initialValue: minimumSignal,
-          decoration: const InputDecoration(labelText: '信号筛选 · 按强度排序'),
-          items: const [
-            DropdownMenuItem(value: -100, child: Text('全部信号')),
-            DropdownMenuItem(value: -80, child: Text('至少 −80 dBm')),
-            DropdownMenuItem(value: -70, child: Text('至少 −70 dBm')),
-            DropdownMenuItem(value: -60, child: Text('至少 −60 dBm')),
-          ],
-          onChanged: (value) => setState(() => minimumSignal = value ?? -100),
-        ),
-        Panel(
-          title: tab == 'comparison'
-              ? '选择对比网络（最多 8 个）'
-              : '周边网络 · ${visible.length}',
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 6),
-          child: Column(
-            children: [
-              for (final ap in tab == 'comparison' ? filtered : visible)
-                ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  leading: tab == 'comparison'
-                      ? Checkbox(
-                          value: controller.comparedBssids.contains(ap.bssid),
-                          onChanged: (enabled) {
-                            if (enabled == true &&
-                                controller.comparedBssids.length >= 8) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('最多同时对比 8 个接入点')),
-                              );
-                              return;
-                            }
-                            controller.compare(ap.bssid, enabled ?? false);
-                          },
-                        )
-                      : Icon(Icons.circle, size: 12, color: apColor(ap.bssid)),
-                  title: Text(
-                    ap.ssid,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  subtitle: Text(
-                    '信道 ${channel(ap.frequency) ?? '?'} · ${ap.channelWidth == 0
-                        ? '宽度未知'
-                        : ap.centerFrequency1 > 0
-                        ? '80+80 MHz'
-                        : '${ap.channelWidth} MHz'}\n${ap.bssid} · ${apAge(ap, controller.snapshot)}',
-                    style: const TextStyle(fontSize: 11, color: muted),
-                  ),
-                  trailing: Text(
-                    '${ap.rssi} dBm',
-                    style: const TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                  onTap: () => showModalBottomSheet<void>(
-                    context: context,
-                    showDragHandle: true,
-                    builder: (context) => SafeArea(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              ap.ssid,
-                              style: const TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            ValueRow('BSSID', ap.bssid, copy: true),
-                            ValueRow('信号', '${ap.rssi} dBm'),
-                            ValueRow('频率', '${ap.frequency} MHz'),
-                            ValueRow('安全方式', ap.security),
-                            ValueRow('最近发现', apAge(ap, controller.snapshot)),
-                            ValueRow(
-                              '带宽',
-                              ap.channelWidth == 0
-                                  ? '系统未提供'
-                                  : ap.centerFrequency1 > 0
-                                  ? '80+80 MHz'
-                                  : '${ap.channelWidth} MHz',
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              if ((tab == 'comparison' ? filtered : visible).isEmpty)
-                const Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Text('尚无扫描结果', style: TextStyle(color: muted)),
-                ),
-            ],
-          ),
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                age == null
-                    ? '尚未扫描'
-                    : '最近扫描：${age < 60 ? '$age 秒' : '${age ~/ 60} 分钟'}前',
-                style: const TextStyle(color: muted, fontSize: 12),
+                ],
               ),
             ),
-            TextButton(
-              onPressed: () async {
-                if (!controller.scanPaused) {
-                  controller.pauseScan();
-                  return;
-                }
-                try {
-                  await controller.scan();
-                } on Exception catch (error) {
-                  if (context.mounted) showError(context, error);
-                }
-              },
-              child: Text(controller.scanPaused ? '开始扫描' : '暂停扫描'),
-            ),
-          ],
+          ),
         ),
-        if (state?.scanStatus == 'SCAN_THROTTLED')
-          const Notice('系统限制了扫描频率，正在保留上次结果。通常约 30 秒后可再次扫描。'),
-        if (controller.activeRun != null && !controller.scanPaused)
-          const Notice('诊断运行期间暂停主动扫描，避免影响测量。'),
+        Expanded(
+          child: PageBody(
+            children: [
+              SegmentedButton<String>(
+                showSelectedIcon: false,
+                segments: const [
+                  ButtonSegment(value: 'networks', label: Text('网络')),
+                  ButtonSegment(value: 'comparison', label: Text('信号对比')),
+                  ButtonSegment(value: 'channels', label: Text('信道')),
+                ],
+                selected: {tab},
+                onSelectionChanged: (value) =>
+                    setState(() => tab = value.first),
+              ),
+              if (permission?.fineLocation != true)
+                Notice(
+                  '系统要求精确定位权限，才能显示周边 Wi-Fi。',
+                  action: TextButton(
+                    onPressed: () async {
+                      try {
+                        await controller.requestPermissions();
+                      } on Exception catch (error) {
+                        if (context.mounted) showError(context, error);
+                      }
+                    },
+                    child: const Text('允许扫描所需权限'),
+                  ),
+                ),
+              if (permission?.fineLocation == true &&
+                  permission?.locationEnabled != true)
+                Notice(
+                  '请开启系统定位服务。App 不会获取或上传 GPS 位置。',
+                  action: TextButton(
+                    onPressed: () =>
+                        controller.host.openSystemSettings('location'),
+                    child: const Text('打开定位设置'),
+                  ),
+                ),
+              if (permission?.wifiEnabled != true)
+                Notice(
+                  'Wi-Fi 尚未开启。',
+                  action: TextButton(
+                    onPressed: () => controller.host.openSystemSettings('wifi'),
+                    child: const Text('打开 Wi-Fi 设置'),
+                  ),
+                ),
+              if (state?.scanStatus == 'SCAN_THROTTLED')
+                const Notice('系统限制了扫描频率，正在保留上次结果。通常约 30 秒后可再次扫描。'),
+              if (controller.activeRun != null && !controller.scanPaused)
+                const Notice('诊断运行期间暂停主动扫描，避免影响测量。'),
+              if (tab != 'comparison')
+                SegmentedButton<String>(
+                  showSelectedIcon: false,
+                  segments: const [
+                    ButtonSegment(value: '2.4', label: Text('2.4 GHz')),
+                    ButtonSegment(value: '5', label: Text('5 GHz')),
+                    ButtonSegment(value: '6', label: Text('6 GHz')),
+                  ],
+                  selected: {band},
+                  onSelectionChanged: (value) =>
+                      setState(() => band = value.first),
+                ),
+              if (tab == 'channels')
+                Panel(
+                  title: '信道分布',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text(
+                        '接收信号强度 · dBm',
+                        style: TextStyle(color: muted, fontSize: 12),
+                      ),
+                      const SizedBox(height: 12),
+                      ChannelChart(aps: visible, band: band),
+                      const Text(
+                        '频率重叠示意，不代表实测占用率或噪声',
+                        style: TextStyle(color: muted, fontSize: 11),
+                      ),
+                    ],
+                  ),
+                ),
+              if (tab == 'comparison')
+                Panel(
+                  title: '信号趋势',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text(
+                        '最近 10 分钟 · 按实际扫描时间采样',
+                        style: TextStyle(color: muted, fontSize: 12),
+                      ),
+                      const SizedBox(height: 16),
+                      SizedBox(
+                        height: 225,
+                        child: SignalChart(controller: controller, aps: chosen),
+                      ),
+                      if (chosen.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12),
+                          child: Wrap(
+                            spacing: 12,
+                            runSpacing: 6,
+                            children: [
+                              for (var i = 0; i < chosen.length; i++)
+                                Text(
+                                  '● ${chosen[i].ssid}',
+                                  style: TextStyle(
+                                    color: apColor(chosen[i].bssid),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                      for (final ap in chosen)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Text(
+                            '${ap.ssid} (${ap.bssid})\n${signalSummary(controller, ap)}',
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: apColor(ap.bssid),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              NetworkCard(
+                controller: controller,
+                onSelect: () => chooseNetwork(context, controller),
+              ),
+              TextField(
+                onChanged: (value) => setState(() => filter = value),
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  hintText: '筛选网络名称',
+                ),
+              ),
+              DropdownButtonFormField<int>(
+                isExpanded: true,
+                initialValue: minimumSignal,
+                decoration: const InputDecoration(labelText: '信号筛选 · 按强度排序'),
+                items: const [
+                  DropdownMenuItem(value: -100, child: Text('全部信号')),
+                  DropdownMenuItem(value: -80, child: Text('至少 −80 dBm')),
+                  DropdownMenuItem(value: -70, child: Text('至少 −70 dBm')),
+                  DropdownMenuItem(value: -60, child: Text('至少 −60 dBm')),
+                ],
+                onChanged: (value) =>
+                    setState(() => minimumSignal = value ?? -100),
+              ),
+              Panel(
+                title: tab == 'comparison'
+                    ? '选择对比网络（最多 8 个）'
+                    : '周边网络 · ${visible.length}',
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 6),
+                child: Column(
+                  children: [
+                    for (final ap in tab == 'comparison' ? filtered : visible)
+                      ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        leading: tab == 'comparison'
+                            ? Checkbox(
+                                value: controller.comparedBssids.contains(
+                                  ap.bssid,
+                                ),
+                                onChanged: (enabled) {
+                                  if (enabled == true &&
+                                      controller.comparedBssids.length >= 8) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text('最多同时对比 8 个接入点'),
+                                      ),
+                                    );
+                                    return;
+                                  }
+                                  controller.compare(
+                                    ap.bssid,
+                                    enabled ?? false,
+                                  );
+                                },
+                              )
+                            : Icon(
+                                Icons.circle,
+                                size: 12,
+                                color: apColor(ap.bssid),
+                              ),
+                        title: Text(
+                          ap.ssid,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        subtitle: Text(
+                          '信道 ${channel(ap.frequency) ?? '?'} · ${ap.channelWidth == 0
+                              ? '宽度未知'
+                              : ap.centerFrequency1 > 0
+                              ? '80+80 MHz'
+                              : '${ap.channelWidth} MHz'}\n${ap.bssid} · ${apAge(ap, controller.snapshot)}',
+                          style: const TextStyle(fontSize: 11, color: muted),
+                        ),
+                        trailing: Text(
+                          '${ap.rssi} dBm',
+                          style: const TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                        onTap: () => showModalBottomSheet<void>(
+                          context: context,
+                          showDragHandle: true,
+                          builder: (context) => SafeArea(
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    ap.ssid,
+                                    style: const TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  ValueRow('BSSID', ap.bssid, copy: true),
+                                  ValueRow('信号', '${ap.rssi} dBm'),
+                                  ValueRow('频率', '${ap.frequency} MHz'),
+                                  ValueRow('安全方式', ap.security),
+                                  ValueRow(
+                                    '最近发现',
+                                    apAge(ap, controller.snapshot),
+                                  ),
+                                  ValueRow(
+                                    '带宽',
+                                    ap.channelWidth == 0
+                                        ? '系统未提供'
+                                        : ap.centerFrequency1 > 0
+                                        ? '80+80 MHz'
+                                        : '${ap.channelWidth} MHz',
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    if ((tab == 'comparison' ? filtered : visible).isEmpty)
+                      const Padding(
+                        padding: EdgeInsets.all(20),
+                        child: Text('尚无扫描结果', style: TextStyle(color: muted)),
+                      ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

@@ -4,13 +4,13 @@
 
 普通功能免 root；Android 可选高级模式新增按网卡抓包、ARP / DHCP 排障、当前网络系统 DNS 缓存清理、USB 有线临时配置。高级环境按 **KernelSU Next 提供 root、Shizuku 以 Root 模式管理本应用访问**设计。
 
-当前已提供 **0.1.4 开发测试 APK**。四个主页面、普通网络工具、iperf3、网页测速、Shizuku 抓包和 ARP/DHCP 已实现。系统 DNS 清理已在安卓 14 通过受控验证，需 Shizuku Root 和兼容的系统解析器接口；有线配置写入仍保持关闭。进展与证明边界见 [开发记录](docs/delivery/implementation.md)，安装与使用见 [APK 说明](docs/delivery/apk.md)。
+当前已提供 **0.1.5 开发测试 APK**。四个主页面、普通网络工具、iperf3、网页测速、Shizuku 抓包和 ARP/DHCP 已实现。系统 DNS 清理已在安卓 14 通过受控验证，需 Shizuku Root 和兼容的系统解析器接口；有线配置写入仍保持关闭。进展与证明边界见 [开发记录](docs/delivery/implementation.md)，安装与使用见 [APK 说明](docs/delivery/apk.md)。
 
 OnePlus 13 上全部已开放功能已由维护者人工验证通过，具体范围与专项待办见[验证清单](docs/delivery/validation.md)。公开源码前请按[公开准备说明](docs/delivery/public-source.md)检查环境信息并导出不含旧 Git 历史的源码包。
 
 工程采用 [Apache License 2.0](LICENSE)。第三方组件保留各自的许可和来源记录。
 
-WSL 构建入口：`python3 tools/bootstrap_wsl.py` 准备固定工具链，`bash tools/check.sh` 执行本地检查，`bash tools/build_apk.sh` 生成 `dist/broadband-tool-0.1.4.apk` 和 `dist/SHA256SUMS`。工具链、缓存、临时证书均留在 Linux 文件系统；初版使用开发签名，不作为商店发布包。
+WSL 构建入口：`python3 tools/bootstrap_wsl.py` 准备固定工具链，`bash tools/check.sh` 执行本地检查，`bash tools/build_apk.sh` 生成 `dist/broadband-tool-0.1.5.apk` 和 `dist/SHA256SUMS`。工具链、缓存、临时证书均留在 Linux 文件系统；初版使用开发签名，不作为商店发布包。
 
 - [文档总索引](docs/INDEX.md)：按问题找到最小阅读集。
 - [产品范围](docs/product/brief.md)：目标、完成标准和关键限制。

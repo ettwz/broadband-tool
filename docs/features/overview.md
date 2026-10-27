@@ -4,6 +4,8 @@ doc_id: F07 · 原需求 11，并承载需求 4
 
 以当前选择网络为主卡，同时列出系统可见的 Wi-Fi / Ethernet，蜂窝与 VPN 作为状态信息展示。使用原生 API 的结构化数据，不解析厂商差异很大的 ifconfig 文本。[S01-06、07](../research/sources-platform.md)
 
+蜂窝项只展示带 `NET_CAPABILITY_INTERNET` 的普通数据网络，不把 IMS/彩信等运营商专用网络混入“可用网络”。不按 SIM 卡数量补占位行，也不按 IPv4 是否为空或 `VALIDATED` 过滤；IPv6-only 数据网、未验证的数据网及仅局域网的 Wi-Fi/有线仍保留。依据 [Android NetworkCapabilities](https://developer.android.com/reference/android/net/NetworkCapabilities)。
+
 | 分组 | 字段 |
 | --- | --- |
 | 接口 | 显示名、系统接口名、类型、连接状态、选中/系统默认标签 |

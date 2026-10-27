@@ -964,6 +964,7 @@ private open class NetworkApiPigeonCodec : StandardMessageCodec() {
 
 /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
 interface NetworkHostApi {
+  fun getAppVersion(): String
   fun getSnapshot(callback: (Result<PlatformSnapshot>) -> Unit)
   fun selectNetwork(networkId: String)
   fun requestNetworkPermissions(callback: (Result<PermissionData>) -> Unit)
@@ -988,6 +989,21 @@ interface NetworkHostApi {
     @JvmOverloads
     fun setUp(binaryMessenger: BinaryMessenger, api: NetworkHostApi?, messageChannelSuffix: String = "") {
       val separatedMessageChannelSuffix = if (messageChannelSuffix.isNotEmpty()) ".$messageChannelSuffix" else ""
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.broadband_tool.NetworkHostApi.getAppVersion$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { _, reply ->
+            val wrapped: List<Any?> = try {
+              listOf(api.getAppVersion())
+            } catch (exception: Throwable) {
+              NetworkApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
       run {
         val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.broadband_tool.NetworkHostApi.getSnapshot$separatedMessageChannelSuffix", codec)
         if (api != null) {
